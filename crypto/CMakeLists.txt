@@ -1,5 +1,3 @@
-include_directories(../include)
-
 if(NOT OPENSSL_NO_ASM)
   if(UNIX)
     if(${ARCH} STREQUAL "aarch64")
@@ -465,6 +463,8 @@ SET_TARGET_PROPERTIES(crypto PROPERTIES LINKER_LANGUAGE C)
 if(NOT WIN32 AND NOT ANDROID)
   target_link_libraries(crypto pthread)
 endif()
+
+target_link_libraries(crypto OpenSSL::API)
 
 # Every target depends on crypto, so we add libcxx as a dependency here to
 # simplify injecting it everywhere.

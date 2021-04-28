@@ -14,6 +14,10 @@ include(sources.cmake)
 enable_language(C)
 enable_language(CXX)
 
+add_library(ssl_api INTERFACE)
+target_include_directories(ssl_api INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_library(OpenSSL::API ALIAS ssl_api)
+
 # This is a dummy target which all other targets depend on (manually - see other
 # CMakeLists.txt files). This gives us a hook to add any targets which need to
 # run before all other targets.

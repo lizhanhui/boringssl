@@ -10,6 +10,8 @@ add_library(
   wycheproof_util.cc
 )
 
+target_link_libraries(test_support_lib OpenSSL::API)
+
 if (LIBUNWIND_FOUND)
   target_compile_options(test_support_lib PRIVATE ${LIBUNWIND_CFLAGS_OTHER})
   target_include_directories(test_support_lib PRIVATE ${LIBUNWIND_INCLUDE_DIRS})
@@ -29,3 +31,4 @@ add_library(
 )
 
 add_dependencies(boringssl_gtest_main global_target)
+target_link_libraries(boringssl_gtest_main OpenSSL::API)
